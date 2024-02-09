@@ -21,6 +21,8 @@ int main() {
     w(x) {
         int x, y; cin >> x >> y;
 
+        // instead of running this while loop, we use Euclidean gcd theorem
+        // just print cout << __gcd(x, y) << endl;
         while (x > 0) {
             if (x > y) {
                 swap(x, y);
