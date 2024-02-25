@@ -4,6 +4,7 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef pair<int, int> pi;
+typedef vector<pair<int, int>> vip;
 
 #define w(x)            int x;cin>>x;while(x--)
 #define Mostafa         ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -20,34 +21,27 @@ typedef pair<int, int> pi;
 int main() {
 
     Mostafa
+    // https://www.codechef.com/problems/TRANCST
 
     w(x) {
         int n; cin >> n;
-        int mat[n][n];
 
-        int sum = 0;
+        int add, ans = 0;
+        add = (1 << zrobits(n));
 
-        for (int i = 0; i < n; ++i) {
-                        for (int j = 0; j < n;  ++j) {
-                cin >> mat[i][j];
-                sum += mat[i][j];
+        int i = zrobits(n) + 1;
+        n = n >> i;
+
+        while (n) {
+            if (!(n & 1)) {
+                ans += add;
+                add = (1 << i);
             }
-        }
-        int val = 0;
-        for (int i = 0; i < n; ++i) {
-            val = 0;
-            for (int j = 0; j < n; ++j) {
-                if (mat[i][j] == 1) val++;
-            }
-            if (val != 0) {
-                break;
-            }
+            i++;
+            n = n >> 1;
         }
 
-        if (sum / val == val) cout << "SQUARE" << endl;
-        else cout << "TRIANGLE" << endl;
-
-
+        cout << ans << endl;
     }
 
     return 0;
